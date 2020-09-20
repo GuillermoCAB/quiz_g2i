@@ -7,12 +7,16 @@ import { theme } from './styles/theme'
 
 // PAGES
 import Main from "./pages/Main";
+import Quiz from "./pages/Quiz";
+import Result from "./pages/Result";
 
 const Routes = () => (
     <ThemeProvider theme={theme}>
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Main} />
+                <Route exact path="/quiz" component={Quiz} />
+                <Route exact path="/result" component={Result} />
             </Switch>
         </BrowserRouter>
     </ThemeProvider>

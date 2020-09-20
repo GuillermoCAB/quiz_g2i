@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 100%;
+  max-width: 100vw;
   width: 300px;
-  max-height: 100%;
+  max-height: 100vh;
   height: 600px;
   margin: auto;
 
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: ${p => p.direction || 'column'};
+  justify-content: ${p => p.justify || 'flex-start'};
+  align-items: ${p => p.align || 'center'};
   padding: 20px;
 
   background-color: ${p => p.theme.bgColor};
@@ -58,3 +58,36 @@ export const Card = styled.div`
   border-radius: ${p => p.radius || '0'};
   border: ${p => p.border || '1px solid' + p.theme.textColor};
 `;
+
+export const Column = styled.div`
+  width: ${p => p.width || 'auto'};
+  height: ${p => p.height || 'auto'};
+  margin: ${p => p.margin || '0'};
+  overflow-y: ${p => p.overflowY};
+
+  display: ${p => p.display || 'flex'};
+  flex-direction: column;
+  justify-content: ${p => p.justify || 'center'};
+  align-items: ${p => p.align || 'center'};
+`;
+
+export const Row = styled.div`
+  width: ${p => p.width || 'auto'};
+  height: ${p => p.height || 'auto'};
+  margin: ${p => p.margin || '0'};
+  overflow-y: ${p => p.overflowY};
+
+  display: ${p => p.display || 'flex'};
+  justify-content: ${p => p.justify || 'center'};
+  align-items: ${p => p.align || 'center'};
+`;
+
+
+
+
+
+
+
+
+
+
