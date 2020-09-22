@@ -1,4 +1,5 @@
-This project was made using:
+## This project was made using
+
 - create-react-app
 - redux
 - styled-components
