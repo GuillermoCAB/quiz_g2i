@@ -1,3 +1,16 @@
+This project was made using:
+- create-react-app
+- redux
+- styled-components
+- axios
+- redux-persist
+
+To Start:
+Run the command `npm install` on the root folder of the project, then run `npm start`.
+Below you can find the create-react-app original documentation.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
