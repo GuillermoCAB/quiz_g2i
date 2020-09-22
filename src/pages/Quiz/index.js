@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { SET_ANSWER } from '../../constants/actionsTypes'
 
 // UI
-import { Container, Text, Button, Card } from '../../UI';
+import { Container, Title, Text, Card, Row, RoundButton } from '../../UI';
 
 function Quiz() {
 
@@ -21,7 +21,6 @@ function Quiz() {
   const [step, setStep] = useState(0)
 
   useEffect(() => {
-    console.log('q:', questions)
     setQuestion(questions[step])
     textRender(questions[step])
   }, [questions, step])
@@ -53,15 +52,21 @@ function Quiz() {
   }
 
   return <Container>
-    <Text weight="bold" align="center">{question.category}</Text>
-    <Card margin="60px auto 0" height="250px">
+    <Title align="center" height="50px">{question.category}</Title>
+    
+    <Card margin="25% auto 0" height="250px">
       <Text ref={textHTML} align="center"></Text>
     </Card>
-    <Text margin="18px 0 0" weight="bold" size="16px/18px" align="center">
+
+    <Text margin="18px 0 20px" size="16px/18px" align="center">
       {step + 1} of 10
     </Text>
-    <Button onClick={() => handleAnswer('True')}>TRUE</Button>
-    <Button onClick={() => handleAnswer('False')}>FALSE</Button>
+
+    <Row width="300px" justify="space-around">
+      <RoundButton onClick={() => handleAnswer('True')}>True</RoundButton>
+      <RoundButton onClick={() => handleAnswer('False')}>False</RoundButton>
+    </Row>
+
   </Container>;
 }
 

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// IMAGES
+import quizBG from '../../assets/quizBack.png';
+
 // SERVICES
 import api from '../../services/api';
 
@@ -9,7 +12,8 @@ import api from '../../services/api';
 import { SET_QUESTIONS } from '../../constants/actionsTypes';
 
 // UI
-import { Container, Text, Button, Card } from '../../UI';
+import { Container, Title, Text, Image } from '../../UI';
+import Button from '../../UI/Button';
 
 function Main() {
 
@@ -19,6 +23,8 @@ function Main() {
   const [isLoading, setIsLoading] = useState(false)
   
   const getQuestions = async () => {
+    if (isLoading) return
+
     setIsLoading(true)
 
     try {
@@ -34,18 +40,25 @@ function Main() {
   }
 
   return <Container justify="space-between">
-    <Text weight="bold" align="center" width="180px">
+
+    <Title align="center">
         Welcome to the Trivia Challenge!
-    </Text>
-    <Text align="center" width="220px">
+    </Title>
+
+    <Image src={quizBG} alt="background_image_g2i_quiz" width="80%" />
+
+    <Text size="18px/18px" align="center" width="220px">
        You will be presented with 10 True or False questions.
     </Text>
-    <Text align="center" width="220px">
+
+    <Text size="18px/18px" align="center" width="220px">
         Can you score 100%?
     </Text>
-    <Button onClick={() => getQuestions()}>     
+
+    <Button isLoading={isLoading} onClick={() => getQuestions()}>     
       BEGIN
     </Button>
+
   </Container>;
 }
 

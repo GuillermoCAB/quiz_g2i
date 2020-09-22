@@ -1,6 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+// IMAGES
+import right from '../../assets/right.png';
+import wrong from '../../assets/wrong.png';
 
 // SERVICES
 import api from '../../services/api';
@@ -9,11 +13,10 @@ import api from '../../services/api';
 import { SET_QUESTIONS } from '../../constants/actionsTypes'
 
 // UI
-import { Container, Text, Row, Column, Button } from '../../UI';
+import { Container, Title, Text, Row, Column, Image } from '../../UI';
+import Button from '../../UI/Button';
 
 function Result() {
-
-  const textHTML = useRef()
 
   const history = useHistory()
   
@@ -25,6 +28,8 @@ function Result() {
   const [isLoading, setIsLoading] = useState(false)
   
   const reset = async () => {
+    if (isLoading) return
+
     setIsLoading(true)
 
     try {
@@ -40,19 +45,20 @@ function Result() {
   }
 
   return <Container justify="space-between">
-    <Text weight="bold" align="center">
+    <Title weight="bold" align="center">
       You scored {score}/10
-    </Text>
+    </Title>
 
-    <Column justify="flex-start" height="400px" overflowY="auto">
+    <Column padding="0 4px" justify="flex-start" align="flex-start" height="80%" overflowY="auto">
       {answers.map((answer, i) => {
-        return <Row margin="8px 0" align="flex-start">
-            <Text width="28px" size="24px/17px" key={i}>{answer.isCorrect ? '+' : '-'}</Text>
-            <Text size="16px/18px" key={i} dangerouslySetInnerHTML={{__html: questions[i].question}} />
+        return <Row key={i} margin="8px 0" align="flex-start">
+            <Image margin="0 8px 0 0" width="16px" src={answer.isCorrect ? right : wrong} />
+            <Text size="16px/18px" dangerouslySetInnerHTML={{__html: questions[i].question}} />
           </Row>
       })}
     </Column>
-    <Button onClick={reset} width="150px">PLAY AGAIN?</Button>
+
+    <Button isLoading={isLoading} onClick={reset} width="150px">PLAY AGAIN?</Button>
   </Container>;
 }
 
